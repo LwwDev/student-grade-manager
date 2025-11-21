@@ -22,7 +22,7 @@ void DisplayStudents(std::string Students[], double Grade[], int Size);
 
 
 int main(){
-    int Action = Menu();
+    char Action = Menu();
     std::string Students[] = {"Liam", "Erica", "Leon", "Felix", "Eric"};
     double Grade[]         = {3.14, 69.9, 0.1, 2.1, 3.9};
     int Size = sizeof(Students)/sizeof(Students[0]);
