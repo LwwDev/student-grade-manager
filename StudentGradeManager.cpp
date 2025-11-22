@@ -1,12 +1,8 @@
 /*Student grade Mangaer
 req: 
-    storedata for 5 students name (string) and grades (char or double)
 
-    menu opt add a student 
 
-    display all students with their grades 
 
-    calc and display avg
 
     find highest lowest grade + name
 
@@ -22,6 +18,7 @@ int Menu();
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
 void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
+double average(std::vector<double>& Grades);
 
 
 int main(){
@@ -36,6 +33,7 @@ while(true){
             case 1: DisplayStudents(Students, Grades); break;
             case 2: AddStudent(Students, Grades); break;
             case 3: RemoveStudent(Students, Grades); break;
+            case 4: { double avg = average(Grades); std::cout << "Class average: " << avg << '\n'; break;}
             case 7: return 0; 
 
             default: std::cout << "error"; break;
@@ -44,6 +42,17 @@ while(true){
 }
 
 
+double average(std::vector<double>& Grades){
+    if (Grades.empty()) return 0.0;
+
+    double sum = 0;
+
+    for (double g : Grades) {
+        sum+= g;
+    }
+
+    return sum / Grades.size();
+}
 
 void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades){
     DisplayStudents(Students, Grades);
@@ -70,7 +79,6 @@ void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grad
 
 }
 
-
 void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades){
     std::string name; 
     double grade;
@@ -86,8 +94,6 @@ void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades)
     
     std::cout << "Student added Successfully\n";
 }
-
-
 
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades){
     for(int i = 0; i < Students.size(); i++){
