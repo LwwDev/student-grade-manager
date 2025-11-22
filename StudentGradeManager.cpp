@@ -21,6 +21,7 @@ req:
 int Menu();
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
+void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
 
 
 int main(){
@@ -34,15 +35,44 @@ while(true){
         switch(Action){
             case 1: DisplayStudents(Students, Grades); break;
             case 2: AddStudent(Students, Grades); break;
-            case 6: return 0; 
+            case 3: RemoveStudent(Students, Grades); break;
+            case 7: return 0; 
 
             default: std::cout << "error"; break;
         }
     }
 }
 
+
+
+void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades){
+    DisplayStudents(Students, Grades);
+
+    int index; 
+    std::cout << "Enter the student number to remove: ";
+    std::cin >> index; 
+    index--;
+
+    if (index >= 0 && index < Students.size()) {
+        
+        Students.erase(Students.begin() + index);
+        Grades.erase(Grades.begin() + index);
+
+        std::cout << "Student removed!\n";
+    }
+    else {
+        std::cout << "Invalid student number!\n";
+    }
+
+
+
+
+
+}
+
+
 void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades){
-    std::string name;
+    std::string name; 
     double grade;
 
     std::cout << "Enter student name: ";
@@ -59,13 +89,9 @@ void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades)
 
 
 
-
-
-
-
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades){
     for(int i = 0; i < Students.size(); i++){
-        std::cout << "Student | " << i+1 << " " << Students[i] << " | Grade: " << Grades[i] << " " << '\n'; 
+        std::cout << "Student " << i+1 << " | " << Students[i] << " | Grade: " << Grades[i] << " " << '\n'; 
     }
     
 }
@@ -81,10 +107,11 @@ int Menu(){
     std::cout << "*********************************\n\n";
     std::cout << "1. Show all students\n"
               << "2. Add Student\n"
-              << "3. Show class average\n"
-              << "4. Find highest and lowest grade\n"
-              << "5. Search for student\n"
-              << "6. Exit\n\n";
+              << "3. Remove Student\n"
+              << "4. Show class average\n"
+              << "5. Find highest and lowest grade\n"
+              << "6. Search for student\n"
+              << "7. Exit\n\n";
     std::cin >> MenuChoice;
 
     switch(MenuChoice){
@@ -94,6 +121,7 @@ int Menu(){
         case '4': Action = 4; stop = true; break;
         case '5': Action = 5; stop = true; break;
         case '6': Action = 6; stop = true; break;
+        case '7': Action = 7; stop = true; break;
         default: system("cls"); std::cout << "Invalid input\n "; break;
     }
     }
