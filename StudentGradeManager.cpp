@@ -60,7 +60,7 @@ void SearchStudent(const std::vector<std::string>& Students, const std::vector<d
 
 }
 
-void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades){
+void FindHL(const std::vector<std::string>& Students, const std::vector<double>& Grades){
     if(Grades.empty()){
         std::cout << "No students in this class\n";
         return;
@@ -86,7 +86,7 @@ void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades){
 
 }
 
-double Average(std::vector<double>& Grades){
+double Average(const std::vector<double>& Grades){
     if (Grades.empty()) return 0.0;
 
     double sum = 0;
