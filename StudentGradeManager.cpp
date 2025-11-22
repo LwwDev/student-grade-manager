@@ -20,21 +20,20 @@ req:
 
 int Menu();
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades);
-void 
+void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
 
 
 int main(){
 
+std::vector<std::string> Students = {"Liam", "Erica", "Leon", "Felix", "Eric"};
+std::vector<double> Grades = {3.14, 69.9, 0.1, 2.1, 3.9};
+
 while(true){
         char Action = Menu();
 
-        std::vector<std::string> Students = {"Liam", "Erica", "Leon", "Felix", "Eric"};
-        std::vector<double> Grades = {3.14, 69.9, 0.1, 2.1, 3.9};
-
-
         switch(Action){
             case 1: DisplayStudents(Students, Grades); break;
-            case 2: 
+            case 2: AddStudent(Students, Grades); break;
             case 6: return 0; 
 
             default: std::cout << "error"; break;
@@ -42,16 +41,34 @@ while(true){
     }
 }
 
+void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades){
+    std::string name;
+    double grade;
+
+    std::cout << "Enter student name: ";
+    std::cin >> name;
+
+    std::cout << "Enter student grade: ";
+    std::cin >> grade;
+
+    Students.push_back(name);
+    Grades.push_back(grade);
+    
+    std::cout << "Student added Successfully\n";
+}
+
+
+
+
+
+
+
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades){
     for(int i = 0; i < Students.size(); i++){
         std::cout << "Student | " << i+1 << " " << Students[i] << " | Grade: " << Grades[i] << " " << '\n'; 
     }
     
 }
-
-
-
-
 
 int Menu(){
     int Action = 0;
