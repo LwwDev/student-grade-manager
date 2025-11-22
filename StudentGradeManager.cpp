@@ -6,8 +6,8 @@ int Menu();
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
 void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
-double Average(std::vector<double>& Grades);
-void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades);
+double Average(const std::vector<double>& Grades);
+void FindHL(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 void SearchStudent(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 
 int main(){
