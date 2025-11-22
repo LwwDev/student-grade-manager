@@ -1,15 +1,3 @@
-/*Student grade Mangaer
-req: 
-
-
-
-
-    find highest lowest grade + name
-
-    search for student by name
-
-    exit
-*/ 
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -20,7 +8,7 @@ void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades)
 void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
 double Average(std::vector<double>& Grades);
 void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades);
-
+void SearchStudent(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 
 int main(){
 
@@ -36,11 +24,40 @@ while(true){
             case 3: RemoveStudent(Students, Grades); break;
             case 4: { double avg = Average(Grades); std::cout << "Class average: " << avg << '\n'; break;}
             case 5: FindHL(Students, Grades); break;
+            case 6: SearchStudent(Students, Grades); break; 
             case 7: return 0; 
 
             default: std::cout << "error"; break;
         }
     }
+}
+
+
+void SearchStudent(const std::vector<std::string>& Students, const std::vector<double>& Grades){
+  if (Students.empty()) {
+        std::cout << "No students in the class!\n";
+        return;
+    }
+
+    std::string name;
+    std::cout << "Enter the name of the student to search: ";
+    std::cin >> name;
+
+    bool found = false;
+
+    for (int i = 0; i < Students.size(); i++) {
+        if (Students[i] == name) {
+            std::cout << "Student found! " 
+                      << Students[i] << " | Grade: " << Grades[i] << "\n";
+            found = true;
+            break; // stop after finding the first match
+        }
+    }
+
+    if (!found) {
+        std::cout << "Student \"" << name << "\" not found.\n";
+    }
+
 }
 
 void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades){
