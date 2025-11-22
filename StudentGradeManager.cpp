@@ -18,7 +18,8 @@ int Menu();
 void DisplayStudents(const std::vector<std::string>& Students, const std::vector<double>& Grades);
 void AddStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
 void RemoveStudent(std::vector<std::string>& Students, std::vector<double>& Grades);
-double average(std::vector<double>& Grades);
+double Average(std::vector<double>& Grades);
+void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades);
 
 
 int main(){
@@ -33,7 +34,8 @@ while(true){
             case 1: DisplayStudents(Students, Grades); break;
             case 2: AddStudent(Students, Grades); break;
             case 3: RemoveStudent(Students, Grades); break;
-            case 4: { double avg = average(Grades); std::cout << "Class average: " << avg << '\n'; break;}
+            case 4: { double avg = Average(Grades); std::cout << "Class average: " << avg << '\n'; break;}
+            case 5: FindHL(Students, Grades); break;
             case 7: return 0; 
 
             default: std::cout << "error"; break;
@@ -41,8 +43,33 @@ while(true){
     }
 }
 
+void FindHL(std::vector<std::string>& Students, std::vector<double>& Grades){
+    if(Grades.empty()){
+        std::cout << "No students in this class\n";
+        return;
+    }
+    double highest = Grades[0];
+    double lowest = Grades[0];
+    int highIndex = 0;
+    int lowIndex = 0;
 
-double average(std::vector<double>& Grades){
+    for(int i = 1; i < Grades.size(); i++){
+        if (Grades[i] > highest){
+            highest = Grades[i];
+            highIndex = i;
+        }
+        if (Grades[i] < lowest){
+            lowest = Grades[i];
+            lowIndex = i;
+        }   
+    }
+
+    std::cout << "Highest grade: " << highest << " (Student: " << Students[highIndex] << ")\n";
+    std::cout << "Lowest grade: " << lowest << " (Student: " << Students[lowIndex] << ")\n";
+
+}
+
+double Average(std::vector<double>& Grades){
     if (Grades.empty()) return 0.0;
 
     double sum = 0;
